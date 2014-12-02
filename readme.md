@@ -1,0 +1,1 @@
+OEStato applicatio, this is an object explorer plugin that presents a table containing an object and the number of links it is part of

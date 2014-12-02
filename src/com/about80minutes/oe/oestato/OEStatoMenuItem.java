@@ -7,6 +7,10 @@ import javax.imageio.ImageIO;
 
 import jxl.common.Logger;
 
+import com.palantir.api.histogram.HistogramBucket;
+import com.palantir.api.histogram.HistogramModel;
+import com.palantir.api.horizon.v1.object.HComponentBaseType;
+import com.palantir.api.horizon.v1.object.HComponentType;
 import com.palantir.api.objectexplorer.v1.UserInterfaceManager;
 import com.palantir.api.objectexplorer.v1.image.ImageRegistry;
 import com.palantir.api.objectexplorer.v1.menu.AbstractOperationsMenuItem;
@@ -21,7 +25,14 @@ import com.palantir.api.objectexplorer.v1.model.AnalysisTreeSetModel;
  */
 public class OEStatoMenuItem extends AbstractOperationsMenuItem {
 
+	private static final String OESTATO_DISABLED = "com.about80minutes.oe.oestato.images.disabled";
+	private static final String OESTATO_PRESSED = "com.about80minutes.oe.oestato.images.pressed";
+	private static final String OESTATO_ACTIVE = "com.about80minutes.oe.oestato.images.active";
+	private static final String OESTATO_UP = "com.about80minutes.oe.oestato.images.up";
+
 	private static final Logger LOGGER = Logger.getLogger(OEStatoMenuItem.class);
+	
+	private Boolean firstRun = Boolean.TRUE;
 
 	/**
 	 * Constructor, initialises this class. Simply calls through to super.
@@ -29,10 +40,7 @@ public class OEStatoMenuItem extends AbstractOperationsMenuItem {
     public OEStatoMenuItem() {
 		super("OEStato", "OEStato", "Shows some stats about the current set",
 			  "com.about80minutes.oe.oestato.OEStatoMenuItem",
-			  "com.about80minutes.oe.oestato.images.up",
-			  "com.about80minutes.oe.oestato.images.active",
-			  "com.about80minutes.oe.oestato.images.pressed",
-			  "com.about80minutes.oe.oestato.images.disabled");
+			  OESTATO_UP, OESTATO_ACTIVE, OESTATO_PRESSED, OESTATO_DISABLED);
 	}
 
 	/**
@@ -45,12 +53,39 @@ public class OEStatoMenuItem extends AbstractOperationsMenuItem {
 	 * for this menu item.
 	 */
 	public OperationsMenuItemConfiguration getConfigurationFor(MenuContext context) {
-		ImageRegistry reg = context.getUserInterfaceManager().getImageRegistry();
-		reg.register("com.about80minutes.oe.oestato.images.up", getImage("/statoUp.png"));
-		reg.register("com.about80minutes.oe.oestato.images.active", getImage("/statoHoverActive.png"));
-		reg.register("com.about80minutes.oe.oestato.images.pressed", getImage("/statoPressed.png"));
-		reg.register("com.about80minutes.oe.oestato.images.disabled", getImage("/statoDisabled.png"));
-		return OperationsMenuItemConfigurations.create(getDescription());
+		if(firstRun) {
+			ImageRegistry reg = context.getUserInterfaceManager().getImageRegistry();
+			reg.register(OESTATO_UP, getImage("/statoUp.png"));
+			reg.register(OESTATO_ACTIVE, getImage("/statoHoverActive.png"));
+			reg.register(OESTATO_PRESSED, getImage("/statoPressed.png"));
+			reg.register(OESTATO_DISABLED, getImage("/statoDisabled.png"));
+			firstRun = Boolean.FALSE;
+		}
+		AnalysisTreeSetModel setModel = context.getSelectedSet();
+	    return OperationsMenuItemConfigurations.create(containsLinkedObjects(setModel), true, false, getDescription(), null);
+	}
+
+	/**
+	 * Utility method for checking if the selected set has at least 1 link in it
+	 * 
+	 * @param setModel a {@link com.palantir.api.objectexplorer.v1.model.AnalysisTreeSetModel}
+	 * to process
+	 * 
+	 * @return a boolean indicating the presence of at least 1 link
+	 */
+	private boolean containsLinkedObjects(AnalysisTreeSetModel setModel) {
+		Boolean containsLinks = Boolean.FALSE;
+		
+		HistogramModel<HComponentType<?>> propertyHistogramModel = setModel.getPropertyHistogramModel();
+		for(HistogramBucket<HComponentType<?>> bucket : propertyHistogramModel.getBuckets()) {
+			HComponentType<?> propertyType = bucket.getFeature();
+			HComponentBaseType bt = propertyType.getBaseType();
+			if(bt.compareTo(HComponentBaseType.LINK) == 0) {
+				containsLinks = Boolean.TRUE;
+				break;
+			}
+		}
+	    return containsLinks;
 	}
 
 	/**

@@ -30,9 +30,9 @@ import javax.swing.SwingWorker;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import jxl.common.Logger;
-
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import com.about80minutes.oe.oestato.horizon.LinkCountView;
 import com.about80minutes.oe.oestato.horizon.LinkCountViewResult;
@@ -62,7 +62,7 @@ import com.palantir.util.Locatables;
  */
 public class OEStatoVisualization implements Visualization<VoidVisualizationArgument> {
 
-	private static final Logger LOGGER = Logger.getLogger(OEStatoVisualization.class);
+	private static final Logger LOGGER = LogManager.getLogger(OEStatoVisualization.class);
 	
 	private final AnalysisTreeSetModel setModel;
 	private final UserInterfaceManager uiManager;

@@ -1,4 +1,4 @@
-package com.about80minutes.oe.oestato;
+package com.about80minutes.palantir.oe.oestato;
 
 import com.palantir.api.objectexplorer.v1.UserInterfaceManager;
 import com.palantir.api.objectexplorer.v1.model.AnalysisTreeSetModel;
@@ -31,7 +31,7 @@ public class OEStatoVisualizationFactory implements VisualizationFactory<VoidVis
 	 * @return a {@link java.lang.String} containing the URI for this plugin
 	 */
 	public String getUri() {
-		return "com.about80minutes.oe.oestato.OEStatoVisualizationFactory";
+		return "com.about80minutes.palantir.oe.oestato.OEStatoVisualizationFactory";
 	}
 
 	/**

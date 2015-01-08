@@ -1,4 +1,4 @@
-package com.about80minutes.oe.oestato;
+package com.about80minutes.palantir.oe.oestato;
 
 import java.io.OutputStream;
 import java.util.List;
@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.hadoop.thirdparty.guava.common.collect.Lists;
 
-import com.about80minutes.oe.oestato.horizon.ObjectSummary;
+import com.about80minutes.palantir.oe.oestato.horizon.ObjectSummary;
 
 /**
  * Customised model used by the results JTable

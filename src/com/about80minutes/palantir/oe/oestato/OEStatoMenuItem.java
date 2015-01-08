@@ -1,4 +1,4 @@
-package com.about80minutes.oe.oestato;
+package com.about80minutes.palantir.oe.oestato;
 
 import java.awt.Image;
 import java.io.IOException;
@@ -25,10 +25,10 @@ import com.palantir.api.objectexplorer.v1.model.AnalysisTreeSetModel;
  */
 public class OEStatoMenuItem extends AbstractOperationsMenuItem {
 
-	private static final String OESTATO_DISABLED = "com.about80minutes.oe.oestato.images.disabled";
-	private static final String OESTATO_PRESSED = "com.about80minutes.oe.oestato.images.pressed";
-	private static final String OESTATO_ACTIVE = "com.about80minutes.oe.oestato.images.active";
-	private static final String OESTATO_UP = "com.about80minutes.oe.oestato.images.up";
+	private static final String OESTATO_DISABLED = "com.about80minutes.palantir.oe.oestato.images.disabled";
+	private static final String OESTATO_PRESSED = "com.about80minutes.palantir.oe.oestato.images.pressed";
+	private static final String OESTATO_ACTIVE = "com.about80minutes.palantir.oe.oestato.images.active";
+	private static final String OESTATO_UP = "com.about80minutes.palantir.oe.oestato.images.up";
 
 	private static final Logger LOGGER = Logger.getLogger(OEStatoMenuItem.class);
 	
@@ -39,7 +39,7 @@ public class OEStatoMenuItem extends AbstractOperationsMenuItem {
 	 */
     public OEStatoMenuItem() {
 		super("OEStato", "OEStato", "Shows some stats about the current set",
-			  "com.about80minutes.oe.oestato.OEStatoMenuItem",
+			  "com.about80minutes.palantir.oe.oestato.OEStatoMenuItem.OEStatoMenuItem()",
 			  OESTATO_UP, OESTATO_ACTIVE, OESTATO_PRESSED, OESTATO_DISABLED);
 	}
 

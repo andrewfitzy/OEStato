@@ -1,4 +1,4 @@
-package com.about80minutes.oe.oestato;
+package com.about80minutes.palantir.oe.oestato;
 
 import java.awt.BorderLayout;
 import java.awt.Image;
@@ -34,9 +34,9 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import com.about80minutes.oe.oestato.horizon.LinkCountView;
-import com.about80minutes.oe.oestato.horizon.LinkCountViewResult;
-import com.about80minutes.oe.oestato.horizon.ObjectSummary;
+import com.about80minutes.palantir.oe.oestato.horizon.LinkCountView;
+import com.about80minutes.palantir.oe.oestato.horizon.LinkCountViewResult;
+import com.about80minutes.palantir.oe.oestato.horizon.ObjectSummary;
 import com.about80minutes.util.FileChooserUtil;
 import com.google.common.collect.Lists;
 import com.palantir.api.horizon.v1.HorizonConnection;

@@ -1,4 +1,4 @@
-package com.about80minutes.oe.oestato.horizon;
+package com.about80minutes.palantir.oe.oestato.horizon;
 
 import java.io.Serializable;
 

@@ -1,11 +1,9 @@
-package oestato.horizon;
+package com.about80minutes.palantir.oe.oestato.horizon;
 
 import static org.junit.Assert.*;
 
 import org.apache.commons.lang.mutable.MutableLong;
 import org.junit.Test;
-
-import com.about80minutes.oe.oestato.horizon.ObjectSummary;
 
 /**
  * Tests the functionality of the ObjectSummary class
